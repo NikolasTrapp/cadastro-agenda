@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:16.2
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: trapp
+#      POSTGRESQL_MAX_CONNECTIONS: 2000
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - trapp-network
+    healthcheck:
+      test: pg_isready -U ${POSTGRES_USER:-postgres}
+      interval: 10s
+      retries: 10
+      start_period: 60s
+      timeout: 10s
+
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  trapp-network:
