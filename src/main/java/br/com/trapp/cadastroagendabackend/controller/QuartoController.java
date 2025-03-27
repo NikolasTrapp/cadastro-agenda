@@ -19,7 +19,7 @@ public class QuartoController {
 
     private final QuartoService quartoService;
 
-    @PostMapping(name = "/registrar")
+    @PostMapping("/registrar")
     public ResponseEntity<QuartoDto> registrar(@Valid @RequestBody QuartoDto quarto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(quartoService.criarQuarto(quarto));
     }

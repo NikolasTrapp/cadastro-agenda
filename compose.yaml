@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: trapp
+      POSTGRES_DB: cadastro-agenda
 #      POSTGRESQL_MAX_CONNECTIONS: 2000
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -20,6 +20,28 @@ services:
       start_period: 60s
       timeout: 10s
 
+
+#  cadastro-agenda-backend:
+#    image: cadastro-agenda-backend:0.0.1
+#    container_name: cadastro-agenda-backend
+#    ports:
+#      - "0:80"
+#    environment:
+#      SERVER_PORT: 80
+#      CADASTRO_AGENDA_DATABASE_URL: "jdbc:postgresql://localhost:5432/cadastro-agenda"
+#      CADASTRO_AGENDA_DATABASE_USERNAME: "postgres"
+#      CADASTRO_AGENDA_DATABASE_PASSWORD: "postgres"
+#      CADASTRO_AGENDA_DATABASE_DRIVERCLASSNAME: "org.postgresql.Driver"
+#    healthcheck:
+#      test: wget --spider --quiet localhost/actuator/health || exit 1
+#      interval: 10s
+#      timeout: 10s
+#      start_period: 60s
+#      retries: 10
+#    depends_on:
+#      - postgres
+#    networks:
+#      - trapp-network
 
 volumes:
   postgres_data:

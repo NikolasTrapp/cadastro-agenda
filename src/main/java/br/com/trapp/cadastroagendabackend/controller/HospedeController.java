@@ -19,7 +19,7 @@ public class HospedeController {
 
     private final HospedeService hospedeService;
 
-    @PostMapping(name = "/registrar")
+    @PostMapping("/registrar")
     public ResponseEntity<HospedeDto> registrar(@Valid @RequestBody HospedeDto hospede) {
         return ResponseEntity.status(HttpStatus.CREATED).body(hospedeService.criarHospede(hospede));
     }
