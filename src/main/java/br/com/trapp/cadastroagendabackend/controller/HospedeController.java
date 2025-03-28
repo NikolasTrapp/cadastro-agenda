@@ -21,28 +21,28 @@ public class HospedeController {
 
     @PostMapping("/registrar")
     public ResponseEntity<HospedeDto> registrar(@Valid @RequestBody HospedeDto hospede) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(hospedeService.criarHospede(hospede));
+        return ResponseEntity.status(HttpStatus.CREATED).body(hospedeService.create(hospede));
     }
 
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<HospedeDto> atualizar(@PathVariable UUID id, @Valid @RequestBody HospedeDto hospedeDto) {
-        return ResponseEntity.status(HttpStatus.OK).body(hospedeService.atualizarHospede(id, hospedeDto));
+        return ResponseEntity.status(HttpStatus.OK).body(hospedeService.update(id, hospedeDto));
     }
 
     @DeleteMapping("/remover/{id}")
     public ResponseEntity<Void> remover(@PathVariable UUID id) {
-        hospedeService.removerHospede(id);
+        hospedeService.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/buscar/{id}")
     public ResponseEntity<HospedeDto> buscarPorId(@PathVariable UUID id) {
-        var hospede = hospedeService.getHospedePorId(id);
+        var hospede = hospedeService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(hospede);
     }
 
     @GetMapping("/buscar")
     public ResponseEntity<Page<HospedeDto>> buscarPaginado(Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(hospedeService.buscaPaginada(pageable));
+        return ResponseEntity.status(HttpStatus.OK).body(hospedeService.list(pageable));
     }
 }

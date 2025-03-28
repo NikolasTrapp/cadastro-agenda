@@ -29,26 +29,31 @@ public class HospedeServiceImpl implements HospedeService {
 
     @Override
     @Transactional
-    public HospedeDto criarHospede(HospedeDto dto) {
+    public HospedeDto create(HospedeDto dto) {
         var hospedeEntity = hospedeMapper.toEntity(dto);
-        hospedeVisitor.validar(hospedeEntity);
+        hospedeVisitor.visitBeforeCreate(hospedeEntity);
         var hospede = hospedeRepository.save(hospedeEntity);
+        hospedeVisitor.visitAfterCreate(hospede);
         return hospedeMapper.toDto(hospede);
     }
 
     @Override
     @Transactional
-    public HospedeDto atualizarHospede(UUID id, HospedeDto dto) {
+    public HospedeDto update(UUID id, HospedeDto dto) {
         var hospede = getHospedeEntityPorId(id); //NOSONAR ja tem transacao e nao faz commit
+
         atualizarHospede(hospede, dto);
-        hospedeVisitor.validar(hospede);
+        hospedeVisitor.visitBeforeUpdate(hospede);
+
         hospede = hospedeRepository.save(hospede);
+
+        hospedeVisitor.visitAfterUpdate(hospede);
         return hospedeMapper.toDto(hospede);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public HospedeDto getHospedePorId(UUID id) {
+    public HospedeDto getById(UUID id) {
         return hospedeRepository.findById(id).
                 map(hospedeMapper::toDto)
                 .orElseThrow(() -> new EntityNotFoundException(format("Hospede com identificador '{}' nao encontrado.", id)));
@@ -62,13 +67,13 @@ public class HospedeServiceImpl implements HospedeService {
 
     @Override
     @Transactional
-    public void removerHospede(UUID id) {
+    public void deleteById(UUID id) {
         hospedeRepository.deleteById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public HospedeDto buscarHospedePorId(UUID id) {
+    public HospedeDto findById(UUID id) {
         return hospedeRepository.findById(id)
                 .map(hospedeMapper::toDto)
                 .orElse(null);
@@ -76,8 +81,8 @@ public class HospedeServiceImpl implements HospedeService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<HospedeDto> buscaPaginada(Pageable pageable) {
-        return null;
+    public Page<HospedeDto> list(Pageable pageable) {
+        return hospedeRepository.findAll(pageable).map(hospedeMapper::toDto);
     }
 
     private void atualizarHospede(HospedeEntity entity, HospedeDto dto) {

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import lombok.*;
+import org.hibernate.annotations.ColumnTransformer;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -27,6 +28,7 @@ public class HospedeEntity extends AuditingEntity {
     @Column(name = "id", unique = true, updatable = false, columnDefinition = "uuid")
     private UUID id;
 
+    @ColumnTransformer(write = "upper(?)")
     @Column(name = "nome", nullable = false, columnDefinition = "varchar")
     @NotBlank(message = "{hospede.nome.notBlank}")
     private String nome;

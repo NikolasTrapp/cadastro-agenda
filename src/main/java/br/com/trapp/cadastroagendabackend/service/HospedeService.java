@@ -1,7 +1,6 @@
 package br.com.trapp.cadastroagendabackend.service;
 
 import br.com.trapp.cadastroagendabackend.dto.HospedeDto;
-import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -9,10 +8,10 @@ import java.util.UUID;
 
 public interface HospedeService {
 
-    HospedeDto criarHospede(HospedeDto hospede);
-    HospedeDto atualizarHospede(UUID id, HospedeDto hospede);
-    void removerHospede(UUID id);
-    HospedeDto buscarHospedePorId(UUID id);
-    HospedeDto getHospedePorId(UUID id);
-    Page<HospedeDto> buscaPaginada(Pageable pageable);
+    HospedeDto create(HospedeDto hospede);
+    HospedeDto update(UUID id, HospedeDto hospede);
+    void deleteById(UUID id);
+    HospedeDto findById(UUID id);
+    HospedeDto getById(UUID id);
+    Page<HospedeDto> list(Pageable pageable);
 }

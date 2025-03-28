@@ -70,4 +70,8 @@ public class ReservaEntity extends AuditingEntity {
     @JoinColumn(name = "quarto_id", nullable = false, columnDefinition = "uuid")
     private QuartoEntity quarto;
 
+    public boolean isNecessitaEstacionamento() {
+        return Boolean.TRUE.equals(necessitaEstacionamento);
+    }
+
 }

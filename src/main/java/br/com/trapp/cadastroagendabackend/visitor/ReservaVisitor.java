@@ -4,7 +4,20 @@ import br.com.trapp.cadastroagendabackend.domain.ReservaEntity;
 
 public interface ReservaVisitor {
 
-    void validate(ReservaEntity reserva);
-    ReservaEntity beforeCreate(ReservaEntity entity);
+    default void visitBeforeCreate(ReservaEntity entity) {
+
+    }
+
+    default void visitAfterCreate(ReservaEntity entity) {
+
+    }
+
+    default void visitBeforeUpdate(ReservaEntity entity) {
+
+    }
+
+    default void visitAfterUpdate(ReservaEntity entity) {
+
+    }
 
 }

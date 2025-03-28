@@ -10,15 +10,6 @@ CREATE TABLE IF NOT EXISTS hospedes
     CONSTRAINT pk_hospedes PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS propriedades
-(
-    id         VARCHAR                     NOT NULL,
-    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-    updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-    valor      VARCHAR                     NOT NULL,
-    CONSTRAINT pk_propriedades PRIMARY KEY (id)
-);
-
 CREATE TABLE IF NOT EXISTS quartos
 (
     id            UUID                        NOT NULL,
