@@ -26,6 +26,7 @@
         <assertj.version>3.26.3</assertj.version>
         <mockito.version>5.16.1</mockito.version>
         <jacoco.version>0.8.12</jacoco.version>
+        <h2.version>2.3.232</h2.version>
     </properties>
     <dependencies>
         <dependency>
@@ -98,6 +99,12 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -149,7 +156,7 @@
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>prepare-package</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
