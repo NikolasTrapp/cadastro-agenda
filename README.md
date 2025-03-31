@@ -78,3 +78,4 @@ docker logs -f nome_do_container
 - Mais testes, garantindo maior cobertura e testando as constraints que as entidades possuem a nivel de controlador e banco de dados, alem de testes de integracao;
 - Adicionado uma entidade de propriedades, para possibilitar a configuracao dinamica dos precos e parametros das rotinas;
 - Uma tabela e sistema de `lock semantico`, junto a uma validacao para nao permitir cadastrar reservas dentro de um periodo ja ocupado para o mesmo quarto.
+- Balanceador de carga / api-gateway, para permitir multiplas instancias e entrega homogenea de requisicoes.
