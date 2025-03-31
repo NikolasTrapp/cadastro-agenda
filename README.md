@@ -75,4 +75,6 @@ docker logs -f nome_do_container
 - Feito um sistema de login e roles, teria feito um contexto estatico para setar usuario e adicionado campos de auditoria created_by e last_modified_by nas tabelas e configurado o slf4j para logar este usuario em todos os logs;
 - Melhorado o sistema de validacoes e exception handling com uma excecao de negocio;
 - Feito um "aplicador de filtros" mais abrangente para aplicar os filtros que vem do frontend no o QueryDSL;
-- Mais testes, garantindo maior cobertura e testando as constraints que as entidades possuem a nivel de controlador e banco de dados, alem de testes de integracao.
+- Mais testes, garantindo maior cobertura e testando as constraints que as entidades possuem a nivel de controlador e banco de dados, alem de testes de integracao;
+- Adicionado uma entidade de propriedades, para possibilitar a configuracao dos precos e parametros das rotinas;
+- Uma tabela e sistema de lock semantico, junto a uma validacao para nao permitir cadastrar reservas dentro de um periodo ja ocupado para o mesmo quarto.
