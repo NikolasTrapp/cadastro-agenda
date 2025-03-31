@@ -11,7 +11,7 @@ Antes de iniciar, certifique-se de ter instalado:
 
 ## Estrutura do docker-compose.yml
 
-O arquivo `docker-compose.yml` contém os seguintes serviços:
+O arquivo `compose.yml` contém os seguintes serviços:
 
 1. **Portainer** - Interface de gerenciamento para Docker.
 2. **PostgreSQL** - Banco de dados PostgreSQL.
@@ -41,7 +41,7 @@ docker ps
 - **Portainer**: [http://localhost:9000](http://localhost:9000)
 - **Backend**: [http://localhost:8080](http://localhost:8080)
 - **Frontend**: [http://localhost:4200](http://localhost:4200)
-- **Banco de Dados (PostgreSQL)**: `localhost:5432`, usuário: `postgres`, senha: `postgres`
+- **Banco de Dados (PostgreSQL)**: `localhost:5432`, usuário: `postgres`, senha: `postgres`, banco de dados: `cadastro_agenda`
 
 ### 4. Parar e remover os containers
 Para parar os serviços e remover os containers, execute:
