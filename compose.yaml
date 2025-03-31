@@ -24,7 +24,7 @@ services:
 #      POSTGRESQL_MAX_CONNECTIONS: 2000
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init_db.sh:/docker-entrypoint-initdb.d/init_db.sh
+      #- ./init_db.sh:/docker-entrypoint-initdb.d/init_db.sh
     healthcheck:
       test: pg_isready -U ${POSTGRES_USER:-postgres}
       interval: 10s
@@ -35,7 +35,7 @@ services:
       - cadastro-agenda
 
   cadastro-agenda-backend:
-    image: cadastro-agenda-backend:0.0.1
+    image: nikolastrapp/cadastro-agenda-backend:0.0.1
     container_name: cadastro-agenda-backend
     ports:
       - "8080:80"
@@ -46,13 +46,23 @@ services:
       CADASTRO_AGENDA_DATABASE_PASSWORD: "postgres"
       CADASTRO_AGENDA_DATABASE_DRIVERCLASSNAME: "org.postgresql.Driver"
     healthcheck:
-      test: wget --spider --quiet localhost/actuator/health || exit 1
+      test: curl -f http://localhost/actuator/health || exit 1
       interval: 10s
-      timeout: 10s
-      start_period: 60s
-      retries: 10
+      timeout: 5s
+      start_period: 30s
+      retries: 3
     depends_on:
       - postgres
+    networks:
+      - cadastro-agenda
+
+  cadastro-agenda-frontend:
+    image: nikolastrapp/cadastro-agenda-frontend:0.0.1
+    container_name: cadastro-agenda-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+    - cadastro-agenda-backend
     networks:
       - cadastro-agenda
 
