@@ -31,6 +31,7 @@ class ReservaVisitorImplTests {
                 .dataEntrada(LocalDate.of(2025, 3, 3))
                 .dataSaida(LocalDate.of(2025, 3, 9))
                 .necessitaEstacionamento(true)
+                .numeroPessoas((short) 1)
                 .build();
 
         reservaVisitor.visitBeforeCreate(reserva);
@@ -51,6 +52,7 @@ class ReservaVisitorImplTests {
                 .dataEntrada(LocalDate.of(2025, 3, 3))
                 .dataSaida(LocalDate.of(2025, 3, 9))
                 .necessitaEstacionamento(false)
+                .numeroPessoas((short) 1)
                 .build();
 
         reservaVisitor.visitBeforeCreate(reserva);
@@ -59,6 +61,27 @@ class ReservaVisitorImplTests {
         var finaisDeSemana = BigDecimal.valueOf(2);
         var valorExpected = VALOR_DIARIA_DIAS_UTEIS.multiply(diasUteis)
                 .add(VALOR_DIARIA_FINAIS_SEMANA.multiply(finaisDeSemana));
+        assertThat(reserva.getValor()).isEqualTo(valorExpected);
+    }
+
+    @Test
+    @DisplayName("Dado uma reserva válida, quando calcular o valor de uma reserva de mais de uma pessoa, então deve somar corretamente os valores das diárias")
+    void dadoReservaValida_quandoCalcularValor_entaoDeveSomarCorretamenteComMaisPEssoas() {
+        var reserva = ReservaEntity.builder()
+                .dataEntrada(LocalDate.of(2025, 3, 3))
+                .dataSaida(LocalDate.of(2025, 3, 9))
+                .necessitaEstacionamento(false)
+                .numeroPessoas((short) 1)
+                .build();
+
+        reservaVisitor.visitBeforeCreate(reserva);
+
+        var diasUteis = BigDecimal.valueOf(5);
+        var finaisDeSemana = BigDecimal.valueOf(2);
+        var numeroPessoas = BigDecimal.valueOf(2);
+        var valorExpected = VALOR_DIARIA_DIAS_UTEIS.multiply(diasUteis)
+                .add(VALOR_DIARIA_FINAIS_SEMANA.multiply(finaisDeSemana))
+                .multiply(numeroPessoas);
         assertThat(reserva.getValor()).isEqualTo(valorExpected);
     }
 
