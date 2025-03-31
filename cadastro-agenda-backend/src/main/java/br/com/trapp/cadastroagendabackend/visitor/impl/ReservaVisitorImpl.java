@@ -59,7 +59,6 @@ public class ReservaVisitorImpl implements ReservaVisitor {
             }
 
             valorTotal = valorTotal.add(valorDiaria).add(taxaEstacionamento);
-            valorTotal = valorTotal.multiply(BigDecimal.valueOf(reserva.getNumeroPessoas()));
 
             log.info("Data: {} | Valor Diária: R$ {} | Taxa Estacionamento: R$ {} | Total acumulado: R$ {}",
                     dataAtual, valorDiaria, taxaEstacionamento, valorTotal);
@@ -67,6 +66,7 @@ public class ReservaVisitorImpl implements ReservaVisitor {
             dataAtual = dataAtual.plusDays(1);
         }
 
+        valorTotal = valorTotal.multiply(BigDecimal.valueOf(reserva.getNumeroPessoas()));
         reserva.setValor(valorTotal);
         log.info("Valor final da reserva: R$ {}", valorTotal);
     }
