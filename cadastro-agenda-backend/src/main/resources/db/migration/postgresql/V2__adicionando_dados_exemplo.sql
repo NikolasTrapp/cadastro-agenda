@@ -56,10 +56,10 @@ VALUES ('a575f4e6-83c6-4f86-809e-3dd40af0a2f5', '2025-03-31 03:27:05.044547', '2
 INSERT INTO reservas (id, created_at, updated_at, data_entrada, data_saida, check_in, check_out, numero_pessoas,
                       necessita_estacionamento, valor, valor_multa, hospede_id, quarto_id)
 VALUES ('018d4054-2e21-404d-bb5a-beebf71b1b52', '2025-03-31 03:28:01.679293', '2025-03-31 03:28:01.679293',
-        '2025-04-02', '2025-04-03', null, null, 2, false, 240.0000, null, '91388db7-2021-40d2-abf3-5a30876dcbe1',
+        '2025-04-02', '2025-04-03', null, null, 2, false, 480.0000, null, '91388db7-2021-40d2-abf3-5a30876dcbe1',
         '91388db7-2021-40d2-abf3-5a30876dcbe1');
 INSERT INTO reservas (id, created_at, updated_at, data_entrada, data_saida, check_in, check_out, numero_pessoas,
                       necessita_estacionamento, valor, valor_multa, hospede_id, quarto_id)
 VALUES ('2ad0c813-6239-457a-afb0-0bf74b4c37ca', '2025-03-31 03:28:23.466432', '2025-03-31 03:28:23.466432',
-        '2025-03-31', '2025-04-02', null, null, 4, false, 360.0000, null, '5134c62e-60c4-4b07-9f03-bcc3d09f4b80',
+        '2025-03-31', '2025-04-02', null, null, 4, false, 1440.0000, null, '5134c62e-60c4-4b07-9f03-bcc3d09f4b80',
         '5134c62e-60c4-4b07-9f03-bcc3d09f4b80');

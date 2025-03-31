@@ -68,3 +68,11 @@ Se houver dúvidas ou problemas, consulte a documentação do Docker ou verifiqu
 docker logs -f nome_do_container
 ```
 
+## Quais eram os proximos passos?
+
+##### Devido ao tempo que tive em meio a compromissos pessoais e prazo estabelecido, no meu ponto de vista, a aplicação poderia ter ou ter melhor os seguintes pontos (de inicio):
+- Adicionado HATEOAS e Swagger na aplicacao;
+- Feito um sistema de login e roles, teria feito um contexto estatico para setar usuario e adicionado campos de auditoria created_by e last_modified_by nas tabelas e configurado o slf4j para logar este usuario em todos os logs;
+- Melhorado o sistema de validacoes e exception handling com uma excecao de negocio;
+- Feito um "aplicador de filtros" mais abrangente para aplicar os filtros que vem do frontend no o QueryDSL;
+- Mais testes, garantindo maior cobertura e testando as constraints que as entidades possuem a nivel de controlador e banco de dados, alem de testes de integracao.
