@@ -71,7 +71,7 @@ class ReservaVisitorImplTests {
                 .dataEntrada(LocalDate.of(2025, 3, 3))
                 .dataSaida(LocalDate.of(2025, 3, 9))
                 .necessitaEstacionamento(false)
-                .numeroPessoas((short) 1)
+                .numeroPessoas((short) 2)
                 .build();
 
         reservaVisitor.visitBeforeCreate(reserva);
